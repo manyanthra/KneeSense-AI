@@ -2,8 +2,8 @@ Flask
 gunicorn
 numpy
 pandas
+scikit-learn==1.6.1
 scikit-image
-scikit-learn
 joblib
 Pillow
 opencv-python-headless
