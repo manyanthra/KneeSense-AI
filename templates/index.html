@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Knee Analysis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#2563eb,#60a5fa);
+padding:40px;
+}
+
+.container{
+max-width:1050px;
+margin:auto;
+background:white;
+border-radius:25px;
+padding:35px;
+box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+}
+
+.sub{
+text-align:center;
+color:#64748b;
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+border:1px solid #d1d5db;
+border-radius:10px;
+}
+
+.file{
+grid-column:1/3;
+}
+
+button{
+width:100%;
+margin-top:20px;
+padding:15px;
+border:none;
+border-radius:12px;
+background:#2563eb;
+color:white;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+}
+
+.result{
+margin-top:35px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.card{
+background:#eff6ff;
+padding:20px;
+border-radius:15px;
+}
+
+.card h2{
+margin-bottom:15px;
+color:#1e40af;
+}
+
+img{
+width:100%;
+border-radius:12px;
+}
+
+table{
+width:100%;
+}
+
+td{
+padding:10px;
+border-bottom:1px solid #dbeafe;
+}
+
+.status{
+margin-top:20px;
+padding:12px;
+background:#dcfce7;
+color:#166534;
+border-radius:10px;
+font-weight:600;
+}
+
+footer{
+margin-top:25px;
+text-align:center;
+color:#64748b;
+font-size:13px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🦴 AI-Assisted Knee Analysis Platform</h1>
+
+<div class="sub">
+Osteoarthritis Assessment & Patient-Specific Implant Planning
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="grid">
+
+<div>
+<label>Patient Name</label>
+<input name="patient" required>
+</div>
+
+<div>
+<label>Age</label>
+<input type="number" name="age" required>
+</div>
+
+<div>
+<label>Sex</label>
+<select name="sex">
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+<div class="file">
+<label>Upload Knee X-ray</label>
+<input type="file" name="image" accept="image/*" required>
+</div>
+
+</div>
+
+<button>Analyze X-ray</button>
+
+</form>
+
+{% if report %}
+
+<div class="result">
+
+<div>
+<img src="{{report.image}}">
+</div>
+
+<div class="card">
+
+<h2>Clinical Report</h2>
+
+<table>
+
+<tr><td><b>Patient</b></td><td>{{report.patient}}</td></tr>
+
+<tr><td><b>Age</b></td><td>{{report.age}}</td></tr>
+
+<tr><td><b>Sex</b></td><td>{{report.sex}}</td></tr>
+
+<tr><td><b>KL Grade</b></td><td>{{report.grade}}</td></tr>
+
+<tr><td><b>AI Confidence</b></td><td>{{report.confidence}}%</td></tr>
+
+<tr><td><b>Meniscus Thickness</b></td><td>{{report.meniscus}} mm</td></tr>
+
+<tr><td><b>Femoral Width</b></td><td>{{report.femur}} mm</td></tr>
+
+<tr><td><b>Tibial Width</b></td><td>{{report.tibia}} mm</td></tr>
+
+<tr><td><b>Recommended Implant</b></td><td>Size {{report.implant}}</td></tr>
+
+</table>
+
+<div class="status">
+Clinical Decision Support Only
+</div>
+
+</div>
+
+</div>
+
+{% endif %}
+
+<footer>
+AI-assisted anatomical analysis • Final diagnosis by orthopedic specialist
+</footer>
+
+</div>
+
+</body>
+</html>
